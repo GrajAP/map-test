@@ -1,0 +1,12 @@
+.git
+.expo
+.gradle
+android/.gradle
+android/app/build
+android/build
+ios/build
+node_modules
+npm-debug.log*
+bun-debug.log*
+Dockerfile
+docker-compose.yml
