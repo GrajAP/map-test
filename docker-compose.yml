@@ -1,0 +1,24 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        NODE_VERSION: 22.22.3
+        BUN_VERSION: 1.3.13
+    image: map-test-dev
+    working_dir: /workspace
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    privileged: true
+    network_mode: host
+    environment:
+      ANDROID_HOME: /opt/android-sdk
+      ANDROID_SDK_ROOT: /opt/android-sdk
+      JAVA_HOME: /opt/java
+      HOME: /workspace/.docker-cache/home
+      GRADLE_USER_HOME: /workspace/.docker-cache/gradle
+      BUN_INSTALL_CACHE_DIR: /workspace/.docker-cache/bun
+      REACT_NATIVE_PACKAGER_HOSTNAME: 127.0.0.1
+    volumes:
+      - .:/workspace
+      - /dev/bus/usb:/dev/bus/usb
+    command: bash

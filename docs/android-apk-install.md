@@ -42,6 +42,23 @@ The script builds the release APK, installs it on the single connected Android d
 ANDROID_SERIAL=your_device_id npm run apk:install
 ```
 
+## Docker build and install
+
+On Debian, Pop!_OS, or any other Linux distro with Docker:
+
+```sh
+docker compose build app
+./scripts/docker-apk-install.sh
+```
+
+The Docker image contains Node, Bun, JDK 17, Android SDK 36, build-tools 35/36, NDK 27.1.12297006, and CMake 3.22.1. The script clears Android build caches that contain absolute host paths, installs JS dependencies from `bun.lock`, runs Expo prebuild, builds the APK, installs it with `adb`, and launches the app.
+
+If the phone is not visible, check:
+
+```sh
+docker compose run --rm --user root app adb devices -l
+```
+
 ## Build a release APK locally
 
 From the repo root:
