@@ -27,6 +27,10 @@ fi
 echo "Regenerating Android native project with Expo prebuild..."
 (cd "$ROOT_DIR" && npx expo prebuild --platform android --no-install)
 
+if [ -n "${ANDROID_HOME:-}" ]; then
+  printf 'sdk.dir=%s\n' "$ANDROID_HOME" > "$ROOT_DIR/android/local.properties"
+fi
+
 echo "Building release APK..."
 (cd "$ROOT_DIR/android" && ./gradlew assembleRelease)
 
