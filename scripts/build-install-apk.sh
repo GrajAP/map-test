@@ -24,6 +24,9 @@ if [ "$DEVICE_COUNT" -gt 1 ] && [ -z "${ANDROID_SERIAL:-}" ]; then
   exit 1
 fi
 
+echo "Regenerating Android native project with Expo prebuild..."
+(cd "$ROOT_DIR" && npx expo prebuild --platform android --no-install)
+
 echo "Building release APK..."
 (cd "$ROOT_DIR/android" && ./gradlew assembleRelease)
 
