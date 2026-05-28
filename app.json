@@ -17,13 +17,28 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
-    },
-    "web": {
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
+      "package": "com.grajpap.maptest"
     },
     "plugins": [
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow map-test to show maps around your current location."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow map-test to choose photos for custom map spots.",
+          "cameraPermission": "Allow map-test to take photos for custom map spots.",
+          "microphonePermission": false
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
@@ -34,7 +49,8 @@
             "imageWidth": 76
           }
         }
-      ]
+      ],
+      "@maplibre/maplibre-react-native"
     ],
     "experiments": {
       "typedRoutes": true,
